@@ -24,6 +24,7 @@ export function App() {
 }
 console.log(pass);
 setPassword(pass);
+
   
   },[length,numberAllowed,charAllowed,setPassword])
 
