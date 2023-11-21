@@ -5,7 +5,8 @@ import conf from "../conf/config";
 export class AuthServices {
   client = new Client();
   account;
-
+  
+//constructor to define client and account
   AuthServices() {
     this.client
       .setEndpoint(conf.appwriteUrl)
@@ -13,6 +14,7 @@ export class AuthServices {
     this.account = new Account(this.client);
   }
 
+  //method to create user account
   async createAccount({ email, password, name }) {
     try {
       const userAccount = await this.account.create(
@@ -31,6 +33,7 @@ export class AuthServices {
     }
   }
 
+  //method to login user into acocount 
   async login({ email, password }) {
     try {
       return await this.account.createEmailSession(email, password);
@@ -39,6 +42,7 @@ export class AuthServices {
     }
   }
 
+  //method to fetch current user details
   async getCurrentUser() {
     try {
       return await this.account.get();
@@ -50,6 +54,7 @@ export class AuthServices {
     return null;
   }
 
+  //logout user from account
   async logOut(){
     try {
         this.account.deleteSession('current');
